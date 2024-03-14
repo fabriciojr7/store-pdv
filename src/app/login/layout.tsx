@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { Sidebar } from "./_components/Sidebar";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,19 +9,16 @@ export const metadata: Metadata = {
   description: "Seu terminal de vendas online",
 };
 
-export default function RootLayout({
+export default function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`h-screen ${inter.className}`}>
-        <div className="h-screen flex">
-          <Sidebar />
-
-          <div>{children}</div>
-        </div>
+      <body className={inter.className}>
+        <h2>Login Layout</h2>
+        {children}
       </body>
     </html>
   );
