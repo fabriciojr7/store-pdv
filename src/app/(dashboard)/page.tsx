@@ -1,5 +1,8 @@
+import { Button } from "@/components/Button";
+import { CatalogProductCard } from "@/components/CatalogProductCard";
 import { Header } from "@/components/Header";
-import { ShoppingCart } from "lucide-react";
+import { Input } from "@/components/Input";
+import { ShoppingBag, ShoppingCart } from "lucide-react";
 
 export default function Catalog() {
   return (
@@ -7,12 +10,17 @@ export default function Catalog() {
       <div className="flex-1 overflow-y-auto h-full">
         <Header />
 
-        <div className="p-5">
-          <h1>Catalog PDV</h1>
+        <div className="p-5 space-y-10">
+          <div className="flex items-center gap-2">
+            <ShoppingBag size={32} />
+            <h1 className="text-2xl font-bold">Catalogo</h1>
+          </div>
+
+          <Input placeholder="Busca de produtos" />
         </div>
       </div>
 
-      <div className="w-1/3 flex flex-col justify-between h-full border-l border-zinc-500/15 ">
+      <div className="w-[40%] flex flex-col justify-between h-full border-l border-zinc-500/15 ">
         <header className="h-24 px-5 bg-zinc-950/50 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <ShoppingCart />
@@ -39,9 +47,7 @@ export default function Catalog() {
             <span>R$ 20,00</span>
           </div>
 
-          <button className="bg-primary py-2 rounded-lg w-full">
-            Confirmar compra
-          </button>
+          <Button>Confirmar compra</Button>
         </div>
       </div>
     </div>
