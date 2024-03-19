@@ -7,6 +7,8 @@ export default function DashobardLayout({
 }) {
   return (
     <div className="h-screen flex">
+      {/* <MenuMobile /> */}
+
       <Sidebar />
 
       <div className="flex-1 overflow-y-auto">{children}</div>

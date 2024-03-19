@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 
 export function Sidebar() {
   return (
-    <div className="flex flex-col justify-between pb-4 bg-zinc-950 h-screen">
+    <div className="hidden lg:flex flex-col justify-between pb-4 bg-zinc-950 h-screen">
       <div className="h-24 flex items-center justify-center border-b border-zinc-900/80">
         <Logo />
       </div>
