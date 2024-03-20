@@ -1,13 +1,22 @@
 import { Sidebar } from "@/components/Sidebar";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { MenuMobile } from "./components/MenuMobile";
 
-export default function DashobardLayout({
+export default async function DashobardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
+
+  if (!session) {
+    redirect("/login");
+  }
+
   return (
     <div className="h-screen flex">
-      {/* <MenuMobile /> */}
+      <MenuMobile />
 
       <Sidebar />
 

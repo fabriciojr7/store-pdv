@@ -6,6 +6,9 @@ const nextConfig = {
         protocol: "https",
         hostname: "fakestoreapi.com",
       },
+      {
+        hostname: "lh3.googleusercontent.com",
+      },
     ],
   },
 };

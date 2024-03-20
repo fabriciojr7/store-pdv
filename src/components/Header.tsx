@@ -1,5 +1,7 @@
 import { Menu } from "lucide-react";
 import { Logo } from "./Logo";
+import { UserIdentifier } from "./UserIdentifier";
+import { ButtonToggleMenuMobile } from "./ButtonToggleMenuMobile";
 
 export function Header() {
   return (
@@ -12,9 +14,15 @@ export function Header() {
         <span className="font-medium">15 de março de 2024</span>
       </div>
 
-      <button>
-        <Menu />
-      </button>
+      <div className="hidden lg:block">
+        <UserIdentifier />
+      </div>
+
+      <div className="block lg:hidden">
+        <ButtonToggleMenuMobile>
+          <Menu />
+        </ButtonToggleMenuMobile>
+      </div>
     </header>
   );
 }

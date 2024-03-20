@@ -1,6 +1,9 @@
+"use client";
+
 import { LogOut, Package, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { signOut } from "next-auth/react";
 
 export function Sidebar() {
   return (
@@ -26,7 +29,10 @@ export function Sidebar() {
       </nav>
 
       <div className="flex items-center justify-center">
-        <button className="hover:text-red-500 hover:bg-zinc-900 p-5 rounded-lg">
+        <button
+          onClick={() => signOut()}
+          className="hover:text-red-500 hover:bg-zinc-900 p-5 rounded-lg"
+        >
           <LogOut />
         </button>
       </div>

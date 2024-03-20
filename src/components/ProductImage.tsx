@@ -12,6 +12,7 @@ export function ProductImage({ product }: IProductImageProps) {
       fill
       alt={product.title}
       className="object-cover object-center rounded-lg"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
     />
   );
 }

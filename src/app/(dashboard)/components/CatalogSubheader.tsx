@@ -1,11 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { useCartStore } from "@/Store/CartStore";
 import { Input } from "@/components/Input";
-import { ShoppingBag, ShoppingCart } from "lucide-react";
+import { Search, ShoppingBag, ShoppingCart } from "lucide-react";
+import { Button } from "@/components/Button";
+import { DropdownCategories } from "@/components/DropdownCategories";
 
 export function CatalogSubheader() {
   const cartStore = useCartStore();
+  const [selectedValue, setSelectedValue] = useState<string | null>(null);
+
+  const handleDropdownChange = (value: string | null) => {
+    setSelectedValue(value);
+  };
 
   return (
     <div className="space-y-10">
@@ -23,8 +31,16 @@ export function CatalogSubheader() {
         </button>
       </div>
 
-      <div>
+      <div className="w-full max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-4">
         <Input placeholder="Busca de produtos" />
+
+        <div className="w-full md:max-w-60">
+          <DropdownCategories onChange={handleDropdownChange} />
+        </div>
+        <Button className="md:max-w-28 flex items-center justify-center gap-4">
+          Filtrar
+          <Search />
+        </Button>
       </div>
     </div>
   );

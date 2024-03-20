@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Provider } from "@/lib/query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={`bg-zinc-900 text-zinc-100 ${inter.className}`}>
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

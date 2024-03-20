@@ -1,17 +1,8 @@
 import { Header } from "@/components/Header";
-import { TableProducts } from "@/components/TableProducts";
-import { IProduct } from "@/interfaces/IProduct";
 import { Package } from "lucide-react";
+import { TableProducts } from "../components/TableProducts";
 
-async function getProducts() {
-  const result = await fetch("https://fakestoreapi.com/products");
-
-  return result.json();
-}
-
-export default async function Products() {
-  const products: IProduct[] = await getProducts();
-
+export default function Products() {
   return (
     <div>
       <Header />
@@ -26,20 +17,7 @@ export default async function Products() {
           </h2>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h3 className="font-medium">Produtos</h3>
-            <div className="w-12 h-8 rounded-lg flex items-center justify-center bg-zinc-500">
-              <span className="block text-zinc-950 font-bold">
-                {products.length}
-              </span>
-            </div>
-          </div>
-
-          <button>Novo produto</button>
-        </div>
-
-        <TableProducts products={products} />
+        <TableProducts />
       </div>
     </div>
   );
