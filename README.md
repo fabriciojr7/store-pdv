@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Store-PDV
 
-## Getting Started
+# Sobre o projeto
 
-First, run the development server:
+https://store-pdv.vercel.app/
+
+Store PDV é uma aplicação simples para gerenciamento de produtos, e posteriormente venda desses produtos, possuindo um ponto de venda (PDV) para realizar as mesmas, para a execução do projeto foi utilizada a api API Fake Store API para gerenciamento dos produtos, visto que não é possivel realmente realizar operações dentro do banco de dados que façam alterações, a api é chamada e então exibida mensagens de sucesso ou erro dependendo do retorno da api, porem essas alterações não seram vizualizadas em tela como a remoção, alteração e criação de novos produtos.
+A aplicação é totalmente responsiva para utilização em dispositivos móveis.
+
+## Layout web
+![Screenshot from 2024-03-21 18-17-02](https://github.com/fabriciojr7/store-pdv/assets/54858776/322b0451-a1d4-4316-8b3e-d7bfeffab4aa)
+
+![Screenshot from 2024-03-21 18-17-20](https://github.com/fabriciojr7/store-pdv/assets/54858776/b7c1ff39-0828-4768-985b-48f460a62e0a)
+
+![Screenshot from 2024-03-21 18-17-27](https://github.com/fabriciojr7/store-pdv/assets/54858776/7c26b9d9-c0eb-4e90-bb72-c1c0ef153315)
+
+![Screenshot from 2024-03-21 18-17-33](https://github.com/fabriciojr7/store-pdv/assets/54858776/82763853-27fd-4336-8cf1-2ff357a1416d)
+
+![Screenshot from 2024-03-21 18-17-43](https://github.com/fabriciojr7/store-pdv/assets/54858776/c16f73c8-3f89-44d7-9069-e3093b00a45d)
+
+# Tecnologias utilizadas
+
+## Front end
+- HTML / CSS / JS / TypeScript
+- ReactJS / NextJs
+- Tailwindcss
+- React-hook-form
+- React-Query: Utilizado para o gerencimento de estado da API
+- Zod: Utilizado para validações de formulario
+- Zustand: Utilizado para gerencimanto de dados dentro da aplicação.
+- NextAuth.js: Utilizado para a autenticação do usuario, no caso será feita autenticação com o google
+- React-toastify
+
+## Implantação em produção
+- Front end web: Vercel
+
+# Como executar o projeto
+
+## Front end web
+Pré-requisitos: node / npm / yarn
 
 ```bash
-npm run dev
-# or
+# clonar repositório
+git clone https://github.com/fabriciojr7/store-pdv
+
+# entrar na pasta do projeto front end web
+cd store-pdv
+
+#Necessario criar uma chave secreta do google para realizar a autenticação, adicionar as chaves no .env, um exemplo das chaves necessarias está no env.exemple
+
+# instalar dependências
+yarn
+
+# executar o projeto
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Autor
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Fabrício Pereira dos Santos Júnior
