@@ -5,6 +5,11 @@ import { useProductDetail } from "@/hooks/useProductDetail";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { FormProduct } from "../components/FormProduct";
+import { IProductWithoutId } from "@/interfaces/IProductWithoutId";
+import { useUpdateProduct } from "@/hooks/useUpdateProduct";
+import { useDeleteProduct } from "@/hooks/useDeleteProduct";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 interface IProductProps {
   params: {
@@ -14,6 +19,38 @@ interface IProductProps {
 
 export default function Product({ params }: IProductProps) {
   const { product } = useProductDetail(Number(params.productId));
+  const router = useRouter();
+
+  const { isPending: isPendingUpdated, mutateAsync } = useUpdateProduct(
+    Number(params.productId)
+  );
+  const { isPending: isPendingDeleted, mutateAsync: mutateAsyncDelete } =
+    useDeleteProduct(Number(params.productId));
+
+  async function deleteProduct() {
+    try {
+      await mutateAsyncDelete();
+      toast.success("Produto deletado com sucesso!");
+
+      router.replace("/products");
+    } catch (error) {
+      toast.success("Erro ao deletar o produto!");
+      console.log(error);
+    }
+  }
+
+  async function updateProduct(product: IProductWithoutId) {
+    try {
+      await mutateAsync(product);
+
+      toast.success("Produto editado com sucesso!");
+
+      router.replace("/products");
+    } catch (error) {
+      toast.success("Erro ao editar o produto!");
+      console.log(error);
+    }
+  }
 
   if (!product) return;
 
@@ -32,7 +69,14 @@ export default function Product({ params }: IProductProps) {
           </Link>
         </div>
 
-        <FormProduct typeform="edit" product={product} />
+        <FormProduct
+          typeform="edit"
+          product={product}
+          onSubmitForm={updateProduct}
+          isPending={isPendingUpdated}
+          onDelete={deleteProduct}
+          isPendingDeleted={isPendingDeleted}
+        />
       </div>
     </>
   );

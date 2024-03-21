@@ -3,6 +3,7 @@ import { DropdownCategories } from "@/components/DropdownCategories";
 import { Input } from "@/components/Input";
 import { Textarea } from "@/components/Textarea";
 import { IProduct } from "@/interfaces/IProduct";
+import { IProductWithoutId } from "@/interfaces/IProductWithoutId";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -23,9 +24,20 @@ type FormData = z.infer<typeof schema>;
 interface IFormProductProps {
   typeform?: "new" | "edit";
   product?: IProduct;
+  onSubmitForm: (product: IProductWithoutId) => void;
+  isPending: boolean;
+  onDelete?: () => void;
+  isPendingDeleted?: boolean;
 }
 
-export function FormProduct({ typeform = "new", product }: IFormProductProps) {
+export function FormProduct({
+  typeform = "new",
+  product,
+  onSubmitForm,
+  isPending,
+  onDelete,
+  isPendingDeleted,
+}: IFormProductProps) {
   const {
     handleSubmit: hookFormHandleSubmit,
     register,
@@ -37,7 +49,16 @@ export function FormProduct({ typeform = "new", product }: IFormProductProps) {
   });
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
-    console.log("submeteu", data);
+    // console.log("submeteu", data);
+    if (data) {
+      onSubmitForm({
+        title: data.title,
+        price: Number(data.price),
+        description: data.description ?? "",
+        image: data.image,
+        category: data.category,
+      });
+    }
   });
 
   return (
@@ -97,12 +118,19 @@ export function FormProduct({ typeform = "new", product }: IFormProductProps) {
       </div>
 
       <div className="flex items-center gap-2">
-        <Button>
+        <Button disabled={isPending || isPendingDeleted}>
           {typeform === "new" ? "Cadastrar Produto" : "Editar Produto"}
         </Button>
 
         {typeform === "edit" && (
-          <Button variant="danger">Excluir Produto</Button>
+          <Button
+            type="button"
+            variant="danger"
+            onClick={onDelete}
+            disabled={isPending || isPendingDeleted}
+          >
+            Excluir Produto
+          </Button>
         )}
       </div>
     </form>

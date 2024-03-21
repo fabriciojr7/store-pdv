@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { CircleX, ShoppingCart } from "lucide-react";
 import { CartItem } from "./CartItem";
 import { useCartStore } from "@/Store/CartStore";
 import { Button } from "@/components/Button";
 import { formatPrice } from "@/lib/util";
+import { toast } from "react-toastify";
 
 interface IPDVShoppingCartProps {
   closeCart?: boolean;
@@ -17,6 +17,12 @@ export function PDVShoppingCart({ closeCart }: IPDVShoppingCartProps) {
   const totalPrice = cartStore.cart.reduce((accumulator, item) => {
     return accumulator + item.product.price * item.quantity!;
   }, 0);
+
+  function handleConfirmSale() {
+    cartStore.confirmSale();
+    toast.success("Venda realizada com sucesso!");
+    cartStore.toggleCart();
+  }
 
   return (
     <div className="w-full flex flex-col justify-between h-full border-l border-zinc-500/15 ">
@@ -52,7 +58,7 @@ export function PDVShoppingCart({ closeCart }: IPDVShoppingCartProps) {
         </div>
 
         <Button
-          onClick={cartStore.confirmSale}
+          onClick={handleConfirmSale}
           disabled={cartStore.cart.length === 0}
         >
           Confirmar compra
