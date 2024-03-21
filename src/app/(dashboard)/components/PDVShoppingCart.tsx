@@ -51,7 +51,12 @@ export function PDVShoppingCart({ closeCart }: IPDVShoppingCartProps) {
           <span>{formatPrice(totalPrice)}</span>
         </div>
 
-        <Button disabled={cartStore.cart.length === 0}>Confirmar compra</Button>
+        <Button
+          onClick={cartStore.confirmSale}
+          disabled={cartStore.cart.length === 0}
+        >
+          Confirmar compra
+        </Button>
       </div>
     </div>
   );

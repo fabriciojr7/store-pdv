@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useCategories() {
   const { data, refetch, isLoading, isFetching, error } = useQuery({
-    staleTime: 0,
+    staleTime: Infinity,
     queryKey: ["categories"],
     queryFn: async (): Promise<string[]> => {
       const result = await fetch(

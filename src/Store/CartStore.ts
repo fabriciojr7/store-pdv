@@ -13,6 +13,7 @@ interface ICartState {
   removeFromCart: (product: IProduct) => void;
   isOpen: boolean;
   toggleCart: () => void;
+  confirmSale: () => void;
 }
 
 export const useCartStore = create<ICartState>()(
@@ -68,6 +69,7 @@ export const useCartStore = create<ICartState>()(
         }),
       isOpen: false,
       toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
+      confirmSale: () => set({ cart: [] }),
     }),
     { name: "cart-storage" }
   )

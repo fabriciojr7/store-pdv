@@ -1,14 +1,10 @@
 "use client";
 
-import { Button } from "@/components/Button";
-import { DropdownCategories } from "@/components/DropdownCategories";
 import { Header } from "@/components/Header";
-import { Input } from "@/components/Input";
-import { Textarea } from "@/components/Textarea";
 import { useProductDetail } from "@/hooks/useProductDetail";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { FormProduct } from "../components/FormProduct";
 
 interface IProductProps {
   params: {
@@ -18,11 +14,6 @@ interface IProductProps {
 
 export default function Product({ params }: IProductProps) {
   const { product } = useProductDetail(Number(params.productId));
-  const [selectedValue, setSelectedValue] = useState<string | null>(null);
-
-  const handleDropdownChange = (value: string | null) => {
-    setSelectedValue(value);
-  };
 
   if (!product) return;
 
@@ -41,37 +32,7 @@ export default function Product({ params }: IProductProps) {
           </Link>
         </div>
 
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label>Nome</label>
-            <Input placeholder="Nome" value={product?.title} />
-          </div>
-
-          <div className="space-y-2">
-            <label>Preço</label>
-            <Input placeholder="Preço" value={product?.price} />
-          </div>
-
-          <div className="space-y-2">
-            <label>Descrição</label>
-            <Textarea placeholder="Descrição" value={product?.description} />
-          </div>
-
-          <div className="space-y-2">
-            <label>Categoria</label>
-            <DropdownCategories onChange={handleDropdownChange} />
-          </div>
-
-          <div className="space-y-2">
-            <label>Imagem</label>
-            <Input placeholder="Imagem" value={product?.image} />
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Button>Editar Produto</Button>
-          <Button variant="danger">Excluir Produto</Button>
-        </div>
+        <FormProduct typeform="edit" product={product} />
       </div>
     </>
   );

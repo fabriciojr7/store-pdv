@@ -33,7 +33,9 @@ export function TableProducts() {
                   <ProductImage product={product} />
                 </div>
               </td>
-              <td className="h-24 py-4">{product.title}</td>
+              <td className="h-24 py-4">
+                {product.title} - {product.id}
+              </td>
               <td className="max-lg:hidden h-24 py-4">{product.category}</td>
               <td className="max-lg:hidden h-24 py-4 text-center">
                 {formatPrice(product.price)}
